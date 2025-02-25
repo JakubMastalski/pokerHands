@@ -1,7 +1,8 @@
-﻿# CMake configuration for PokerHands library
-add_library(PokerHandsLib 
-              Window.cpp
-               Game.cpp)
+﻿add_subdirectory(Core)
+add_subdirectory(Screen)
 
-# Ustawienie katalogów nagłówkowych dla tej biblioteki
-target_include_directories(PokerHandsLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+# Create library which link all modules
+add_library(PokerHandsLib INTERFACE)
+
+# Link all modules to PokerHandsLib
+target_link_libraries(PokerHandsLib INTERFACE CoreModule ScreenModule)
