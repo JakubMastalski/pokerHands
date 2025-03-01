@@ -1,23 +1,19 @@
 #include <SFML/Graphics.hpp>
+#include "Screen/Window.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+    Window window(sf::Vector2u(200, 200), "Window works!");
+
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
-    while (window.isOpen())
+    while (window.isRunning())
     {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-        window.clear();
+        window.handleEvents();
+        window.beginDraw(sf::Color::Blue);
         window.draw(shape);
-        window.display();
+        window.endDraw();
     }
 
     return 0;

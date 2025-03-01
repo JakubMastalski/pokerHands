@@ -7,7 +7,7 @@ Window::Window(const sf::Vector2u& windowSize, std::string windowName)
 
 Window::~Window()
 {
-	destroy();
+    destroy();
 }
 
 void Window::create()

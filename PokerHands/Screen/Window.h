@@ -9,7 +9,7 @@ class Window
 {
 public:
 	explicit Window(const sf::Vector2u& windowSize, std::string windowName);
-
+    ~Window();
 public:
 	void create();
 	void destroy();
