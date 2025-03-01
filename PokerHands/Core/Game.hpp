@@ -7,6 +7,14 @@
 
 class Game
 {
-	
+public:
+    Game();
 
+public:
+    void run();
+
+private:
+    Window m_window;
+
+    sf::RectangleShape m_rectangleShape;
 };
