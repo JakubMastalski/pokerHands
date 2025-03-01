@@ -1,20 +1,13 @@
 #include <SFML/Graphics.hpp>
-#include "Screen/Window.h"
+#include <iostream>
+
+#include "Core/Game.hpp"
 
 int main()
 {
-    Window window(sf::Vector2u(200, 200), "Window works!");
+    Game game;
+    game.run();
 
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
-
-    while (window.isRunning())
-    {
-        window.handleEvents();
-        window.beginDraw(sf::Color::Blue);
-        window.draw(shape);
-        window.endDraw();
-    }
-
+    std::cin.get();
     return 0;
 }

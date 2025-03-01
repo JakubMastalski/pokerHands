@@ -1,18 +1,41 @@
 #include "Game.hpp"
 
-Game::Game() : m_window(sf::Vector2u(1000,800), "Poker Hands")
+#include <cmath>
+
+Game::Game() : m_window(sf::Vector2u(800, 600), "Poker Hands")
 {
-    m_rectangleShape.setSize((sf::Vector2f(300.f, 150.f)));
-    m_rectangleShape.setFillColor(sf::Color::Red);
+    // Empty body.
 }
 
 void Game::run()
 {
-    while (m_window.isRunning())
+    while (!m_window.isDone())
     {
-        m_window.handleEvents();
-        m_window.beginDraw(sf::Color::Blue);
-        m_window.draw(m_rectangleShape);
-        m_window.endDraw();
+        handleEvents();
+        draw();
     }
 }
+
+void Game::handleEvents()
+{
+    m_window.handleInput();
+}
+
+void Game::update(const float& dt)
+{
+    // Empty body.
+}
+
+void Game::draw()
+{
+    m_window.beginDraw();
+
+    sf::RectangleShape m_rectangleShape;
+    m_rectangleShape.setSize(sf::Vector2f(100.f, 50.f));
+    m_rectangleShape.setFillColor(sf::Color::Red);
+
+    m_window.draw(m_rectangleShape);
+
+    m_window.endDraw();
+}
+

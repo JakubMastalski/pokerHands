@@ -1,45 +1,25 @@
-#include "Window.h"
+#include "Screen/Window.hpp"
 
-Window::Window(const sf::Vector2u& windowSize, std::string windowName)
+Window::Window(const sf::Vector2u& windowSize, const std::string& windowTitle)
 {
-	setup(windowSize, windowName);
+    setup(windowSize, windowTitle);
 }
 
-Window::~Window()
-{
-    destroy();
-}
-
-void Window::create()
-{
-	constexpr auto style = sf::Style::Default;
-
-	m_renderer.create({ m_Size.x, m_Size.y }, m_Title, style);
-	m_renderer.setFramerateLimit(60);
-}
-
-void Window::destroy()
-{
-	m_renderer.close();
-}
-
-void Window::handleEvents()
+void Window::handleInput()
 {
     sf::Event event{};
     while (m_renderer.pollEvent(event))
     {
-        switch (event.type)
+        if (event.type == sf::Event::Closed)
         {
-        case sf::Event::Closed:
-            close();
-            break;
-
-        case sf::Event::KeyPressed:
+            m_isDone = true;
+        }
+        if (event.type == sf::Event::KeyPressed)
+        {
             if (event.key.code == sf::Keyboard::Escape)
             {
-                close();
+                m_isDone = true;
             }
-            break;
         }
     }
 }
@@ -59,20 +39,14 @@ void Window::endDraw()
     m_renderer.display();
 }
 
-void Window::close()
+bool Window::isDone() const
 {
-    m_isRunning = false;
-    m_renderer.close();
-}
-
-bool Window::isRunning() const
-{
-    return m_isRunning;
+    return m_isDone;
 }
 
 sf::Vector2u Window::getSize() const
 {
-    return m_Size;
+    return m_windowSize;
 }
 
 sf::RenderWindow& Window::getRenderer()
@@ -82,7 +56,15 @@ sf::RenderWindow& Window::getRenderer()
 
 void Window::setup(const sf::Vector2u& windowSize, const std::string& windowTitle)
 {
-    m_Size = windowSize;
-    m_Title = windowTitle;
+    m_windowSize = windowSize;
+    m_windowTitle = windowTitle;
     create();
+}
+
+void Window::create()
+{
+    constexpr auto style = sf::Style::Default;
+
+    m_renderer.create({ m_windowSize.x, m_windowSize.y }, m_windowTitle, style);
+    m_renderer.setFramerateLimit(60);
 }

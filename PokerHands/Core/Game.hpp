@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Screen/Window.cpp"
+#include "Screen/Window.hpp"
 #include <SFML/Graphics.hpp>
 
 #include <cmath>
@@ -10,11 +10,12 @@ class Game
 public:
     Game();
 
-public:
     void run();
 
 private:
-    Window m_window;
+    void handleEvents();
+    void update(const float& dt);
+    void draw();
 
-    sf::RectangleShape m_rectangleShape;
+    Window m_window;
 };
