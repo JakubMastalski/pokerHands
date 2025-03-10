@@ -1,5 +1,7 @@
 ﻿# Create static library for module Core
-add_library(ScreenModule STATIC Window.cpp "BaseScreen.cpp")
+add_library(ScreenModule STATIC Window.cpp 
+                                BaseScreen.cpp
+                                MenuScreen.cpp "GameScreen.cpp")
 
 # Add include directories for search
 include_directories(${POKER_HANDS_DIR} ${SFML_INCLUDE_DIR})
