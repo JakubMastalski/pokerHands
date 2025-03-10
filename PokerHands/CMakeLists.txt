@@ -6,4 +6,4 @@ add_subdirectory(Tools)
 add_library(PokerHandsLib INTERFACE)
 
 # Link all modules to PokerHandsLib
-target_link_libraries(PokerHandsLib INTERFACE CoreModule ScreenModule)
+target_link_libraries(PokerHandsLib INTERFACE CoreModule ScreenModule ToolsModule)
