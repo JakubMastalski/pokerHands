@@ -9,11 +9,14 @@ public:
 
 public:
     void handleEvents() override;
-    void update(float dt) override;
+    void update() override;
     void render() override;
 
 private:
     sf::Font    m_font;
     sf::Text    m_text;
+
+    sf::Text    m_select;
+    sf::Font    m_selectfont;
 
 };

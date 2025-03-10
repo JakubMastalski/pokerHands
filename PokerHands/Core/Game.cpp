@@ -1,41 +1,28 @@
-#include "Game.hpp"
+#include "Core/Game.hpp"
 
-#include <cmath>
+#include "Screen/GameScreen.hpp"
+#include "Screen/MenuScreen.hpp"
 
-Game::Game() : m_window(sf::Vector2u(1200, 800), "Poker Hands")
+Game::Game()
 {
-    // Empty body.
+    auto* mainWindow = new Window();
+    // mainWindow->create();
+
+    m_screen = std::make_unique< MenuScreen >( mainWindow );
+
+    auto* additionalWindow = new Window({ 800, 600 }, "Menu Screen");
+    additionalWindow->create();
+
+    m_screen = std::make_unique< MenuScreen >(additionalWindow);
 }
 
 void Game::run()
 {
-    while (!m_window.isDone())
+    while (m_screen->isRunning())
     {
-        handleEvents();
-        draw();
+        m_screen->handleEvents();
+        m_screen->update();
+        m_screen->render();
     }
-}
-
-void Game::handleEvents()
-{
-    m_window.handleInput();
-}
-
-void Game::update(const float& dt)
-{
-    // Empty body.
-}
-
-void Game::draw()
-{
-    m_window.beginDraw();
-
-    sf::RectangleShape m_rectangleShape;
-    m_rectangleShape.setSize(sf::Vector2f(100.f, 50.f));
-    m_rectangleShape.setFillColor(sf::Color::Red);
-
-    m_window.draw(m_rectangleShape);
-
-    m_window.endDraw();
 }
 
