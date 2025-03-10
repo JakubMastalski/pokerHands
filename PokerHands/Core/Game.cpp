@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-Game::Game() : m_window(sf::Vector2u(800, 600), "Poker Hands")
+Game::Game() : m_window(sf::Vector2u(1200, 800), "Poker Hands")
 {
     // Empty body.
 }
