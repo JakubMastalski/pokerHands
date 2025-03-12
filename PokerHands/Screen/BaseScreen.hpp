@@ -9,7 +9,7 @@ public:
     virtual ~BaseScreen() = default;
 
 public:
-    virtual void handleEvents();
+    virtual void handleEvents() = 0;
     virtual void update() = 0;
     virtual void render() = 0;
 
