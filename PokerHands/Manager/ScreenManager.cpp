@@ -40,6 +40,17 @@ ScreenManager::ScreenManager()
 
 void ScreenManager::setScreen(const ScreenType screenType)
 {
+    if (screenType == ScreenType::GAME)
+    {
+        auto* menuScreen = dynamic_cast<MenuScreen*>(m_screens[ScreenType::MENU].get());
+        auto* gameScreen = dynamic_cast<GameScreen*>(m_screens[ScreenType::GAME].get());
+
+        if (menuScreen && gameScreen)
+        {
+            gameScreen->setChosenNumber(menuScreen->getChosenNumber() + 2);
+        }
+    }
+
     m_activeScreen = m_screens[screenType].get();
 }
 

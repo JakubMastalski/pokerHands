@@ -11,4 +11,9 @@ public:
     void update() override;
     void render() override;
 
+public:
+    void setChosenNumber(int chosenNumber);
+
+private:
+    int m_chosenNumber = 0;
 };
