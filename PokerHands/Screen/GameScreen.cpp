@@ -1,7 +1,7 @@
 #include "Screen/GameScreen.hpp"
 #include <iostream>
 
-GameScreen::GameScreen(Window* window) :BaseScreen(window)
+GameScreen::GameScreen(Window* window) : BaseScreen(window), m_player({ window })
 {
     if (!backgroundTexture.loadFromFile("res/images/5.png"))
     {
@@ -34,6 +34,7 @@ void GameScreen::render()
     m_window->beginDraw();
     
     m_window->draw(backgroundImage);
+    m_player.draw(m_window.get());
 
     m_window->endDraw();
 }

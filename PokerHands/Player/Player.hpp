@@ -3,6 +3,7 @@
 #include "Screen/Window.hpp"
 #include "Tools/RandomGenerator.hpp"
 
+#include <unordered_map>
 #include <array>
 
 enum class Suit { Hearts = 1, Diamonds, Clubs, Spades };

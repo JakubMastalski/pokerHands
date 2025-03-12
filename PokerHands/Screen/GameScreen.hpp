@@ -1,6 +1,8 @@
 #include <Screen/BaseScreen.hpp>
 #include <Screen/MenuScreen.hpp>
 
+#include "Player/Player.hpp"
+
 class GameScreen final : public BaseScreen
 {
 public:
@@ -15,7 +17,7 @@ public:
     void setChosenNumber(int chosenNumber);
 
 private:
-
+    Player m_player;
     sf::Sprite backgroundImage;
     sf::Texture backgroundTexture;
 

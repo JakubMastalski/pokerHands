@@ -1,4 +1,5 @@
 #include "Player/Player.hpp"
+
 #include <iostream>
 
 Player::Player(const Window* window)
@@ -16,33 +17,39 @@ Player::Player(const Window* window)
 
 void Player::setSprite()
 {
-    const int cardWidth = 100;
-    const int cardHeight = 146;
+    const int cardWidth = 98;
+    const int cardHeight = 137;
 
-    const std::string basePath = "res/cards/cards.png";
-
-    if (!cartTexture[0].loadFromFile(basePath)) {
-        std::cerr << "Failed to load cards.png!" << basePath << std::endl;
-        return;
-    }
+    std::unordered_map<Suit, std::string> suitToFile = {
+        {Suit::Hearts, "res/cards/1.png"},
+        {Suit::Diamonds, "res/cards/2.png"},
+        {Suit::Clubs, "res/cards/3.png"},
+        {Suit::Spades, "res/cards/4.png"}
+    };
 
     for (int i = 0; i < 2; ++i)
     {
         Suit suit = playerDeck[i].suit;
         Rank rank = playerDeck[i].rank;
 
-        int suitIndex = static_cast<int>(suit);
-        int rankIndex = static_cast<int>(rank) - 1; 
+        std::string filePath = suitToFile[suit];
 
-        int textureX = rankIndex * cardWidth;  
-        int textureY = suitIndex * cardHeight; 
+        if (!cartTexture[i].loadFromFile(filePath))
+        {
+            std::cerr << "Failed to load card texture: " << filePath << std::endl;
+            continue;
+        }
+
+        int textureX = (static_cast<int>(rank) - 1) * cardWidth;
+        int textureY = 0; 
 
         sf::IntRect cardRect(textureX, textureY, cardWidth, cardHeight);
 
-        // Ustawienie sprite'a
-        cartSprite[i].setTexture(cartTexture[0]);
+        cartSprite[i].setTexture(cartTexture[i]);
         cartSprite[i].setTextureRect(cardRect);
-        cartSprite[i].setPosition(100 + i * 150, 200);
+        cartSprite[i].setPosition(i * 100, 550);
+
+        cartSprite[i].setScale(1, 1);
     }
 }
 
