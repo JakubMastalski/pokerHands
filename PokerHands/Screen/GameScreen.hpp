@@ -15,5 +15,9 @@ public:
     void setChosenNumber(int chosenNumber);
 
 private:
+
+    sf::Sprite backgroundImage;
+    sf::Texture backgroundTexture;
+
     int m_chosenNumber = 0;
 };

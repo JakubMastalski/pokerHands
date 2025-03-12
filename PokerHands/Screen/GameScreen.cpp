@@ -3,7 +3,19 @@
 
 GameScreen::GameScreen(Window* window) :BaseScreen(window)
 {
-	//EMPTY BODY
+    if (!backgroundTexture.loadFromFile("res/images/5.png"))
+    {
+        std::cerr << "Failed to load 5.png!" << std::endl;
+    }
+
+    backgroundImage.setTexture(backgroundTexture);
+
+    sf::Vector2u windowSize = window->getSize();
+
+    backgroundImage.setScale(
+        static_cast<float>(windowSize.x) / backgroundTexture.getSize().x,
+        static_cast<float>(windowSize.y) / backgroundTexture.getSize().y
+    );
 }
 
 void GameScreen::handleEvents()
@@ -20,6 +32,8 @@ void GameScreen::update()
 void GameScreen::render()
 {
     m_window->beginDraw();
+    
+    m_window->draw(backgroundImage);
 
     m_window->endDraw();
 }
