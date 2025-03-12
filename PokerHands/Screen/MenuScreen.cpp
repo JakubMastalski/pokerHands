@@ -57,62 +57,58 @@ void MenuScreen::handleEvents()
 {
     while (m_window->getRenderer().pollEvent(m_event))
     {
-        switch (number)
-        {
-        case PlayerNumber::twoPlayer:
-        {
-            playersTwo.setScale(0.20f, 0.20f);
-
-            playersThree.setScale(0.18f, 0.18f);
-            playersFour.setScale(0.18f, 0.18f);
-
-            break;
-        }
-        case PlayerNumber::threePlayer:
-        {
-            playersThree.setScale(0.20f, 0.20f);
-
-            playersTwo.setScale(0.18f, 0.18f);
-            playersFour.setScale(0.18f, 0.18f);
-
-            break;
-        }
-        case PlayerNumber::fourPlayer:
-        {
-            playersFour.setScale(0.20f, 0.20f);
-
-            playersTwo.setScale(0.18f, 0.18f);
-            playersThree.setScale(0.18f, 0.18f);
-
-            break;
-        }
-        default:
-            break;
-        }
-
-        if (m_event.type == sf::Event::KeyPressed)
-        {
-            if (m_event.key.code == sf::Keyboard::Left)
-            {
-                if (number > 0) number--;;
-            }
-
-            if(m_event.key.code == sf::Keyboard::Right)
-            {
-                if(number < 2) number++;
-            }
-        }
-
         if (m_event.type == sf::Event::Closed)
         {
             m_window->close();
+            return;
         }
+
         if (m_event.type == sf::Event::KeyPressed)
         {
-            if (m_event.key.code == sf::Keyboard::Escape)
+            switch (m_event.key.code)
             {
+            case sf::Keyboard::Escape:
                 m_window->close();
+                break;
+
+            case sf::Keyboard::Enter:
+                break;
+
+            case sf::Keyboard::Left:
+                if (number > 0) number--;
+                break;
+
+            case sf::Keyboard::Right:
+                if (number < 2) number++;
+                break;
+
+            default:
+                break;
             }
+        }
+
+        switch (number)
+        {
+        case PlayerNumber::twoPlayer:
+            playersTwo.setScale(0.20f, 0.20f);
+            playersThree.setScale(0.18f, 0.18f);
+            playersFour.setScale(0.18f, 0.18f);
+            break;
+
+        case PlayerNumber::threePlayer:
+            playersThree.setScale(0.20f, 0.20f);
+            playersTwo.setScale(0.18f, 0.18f);
+            playersFour.setScale(0.18f, 0.18f);
+            break;
+
+        case PlayerNumber::fourPlayer:
+            playersFour.setScale(0.20f, 0.20f);
+            playersTwo.setScale(0.18f, 0.18f);
+            playersThree.setScale(0.18f, 0.18f);
+            break;
+
+        default:
+            break;
         }
     }
 }
