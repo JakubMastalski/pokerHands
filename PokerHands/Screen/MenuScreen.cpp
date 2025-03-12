@@ -75,11 +75,11 @@ void MenuScreen::handleEvents()
                 break;
 
             case sf::Keyboard::Left:
-                if (number > 0) number--;
+                if (m_chosenNumber > 0) m_chosenNumber--;
                 break;
 
             case sf::Keyboard::Right:
-                if (number < 2) number++;
+                if (m_chosenNumber < 2) m_chosenNumber++;
                 break;
 
             default:
@@ -87,7 +87,7 @@ void MenuScreen::handleEvents()
             }
         }
 
-        switch (number)
+        switch (m_chosenNumber)
         {
         case PlayerNumber::twoPlayer:
             playersTwo.setScale(0.20f, 0.20f);
@@ -130,4 +130,9 @@ void MenuScreen::render()
     m_window->draw(playersFour);
 
     m_window->endDraw();
+}
+
+int MenuScreen::getChosenNumber()
+{
+    return m_chosenNumber;
 }

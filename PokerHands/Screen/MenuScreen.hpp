@@ -19,6 +19,8 @@ public:
     void update() override;
     void render() override;
 
+    int getChosenNumber();
+
 private:
     sf::Font   m_font;
     sf::Text   m_text;
@@ -34,5 +36,5 @@ private:
     sf::Texture threePlayersImage;
     sf::Texture fourPlayersImage;
 
-    int number = 0;
+    int m_chosenNumber = 0;
 };
