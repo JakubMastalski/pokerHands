@@ -7,8 +7,8 @@
 class Window
 {
 public:
-    explicit Window(const sf::Vector2u& windowSize = { 1000, 800 },
-        const std::string& windowTitle = "MonsterWaves");
+    explicit Window(const sf::Vector2u& windowSize = { 900, 700 },
+        const std::string& windowTitle = "PokerHands");
 
     ~Window();
 

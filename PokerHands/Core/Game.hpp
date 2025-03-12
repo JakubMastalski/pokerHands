@@ -1,13 +1,10 @@
 #pragma once
 
-#include "Screen/BaseScreen.hpp"
-
 class Game
 {
 public:
     Game();
-    void run();
+    ~Game();
 
-private:
-    std::unique_ptr< BaseScreen >  m_screen;
+    void run();
 };

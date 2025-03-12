@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "Screen/MenuScreen.hpp"
+#include "Manager/ScreenManager.hpp"
 
 MenuScreen::MenuScreen(Window* window) : BaseScreen(window)
 {
@@ -48,9 +49,9 @@ MenuScreen::MenuScreen(Window* window) : BaseScreen(window)
     playersThree.setScale(0.18f, 0.18f);
     playersFour.setScale(0.18f, 0.18f);
 
-    playersTwo.setPosition(125.f, 320.f);
-    playersThree.setPosition(325.f, 320.f);
-    playersFour.setPosition(525.f, 320.f);
+    playersTwo.setPosition(125.f, 350.f);
+    playersThree.setPosition(325.f, 350.f);
+    playersFour.setPosition(525.f, 350.f);
 }
 
 void MenuScreen::handleEvents()
@@ -72,6 +73,7 @@ void MenuScreen::handleEvents()
                 break;
 
             case sf::Keyboard::Enter:
+                ScreenManager::GetInstance().setScreen(ScreenType::GAME);
                 break;
 
             case sf::Keyboard::Left:
