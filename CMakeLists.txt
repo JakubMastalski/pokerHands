@@ -33,7 +33,7 @@ add_subdirectory(tests)
 include_directories(${POKER_HANDS_DIR})
 
 # Create executable file
-add_executable(PokerHands main.cpp)
+add_executable(PokerHands main.cpp "PokerHands/Player/Player.cpp")
 
 # Link all dependencies for MonsterWaves
 target_link_libraries(PokerHands PRIVATE PokerHandsLib sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
