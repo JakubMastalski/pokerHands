@@ -19,36 +19,37 @@ GameScreen::GameScreen(Window* window) : BaseScreen(window)
 
 void GameScreen::initPlayer()
 {
-    for (int i = 0; i < m_chosenNumber; i++)
-    {
-        auto player = std::make_unique<Player>(m_window.get());
+    for (int i = 0; i < m_chosenNumber; i++) {
+        std::unique_ptr<Player> player;
 
-        switch (i)
-        {
-        case 0:
-            player->setPosition(-5, 45);
-            break;
-        case 1:
-            player->setPosition(705, 45);
-            break;
+        while (true) {
+            player = std::make_unique<Player>(m_window.get());
 
-        case 2:
-            player->setPosition(-5, 530);
-            break;
+            Suit suit1 = player->playerDeck[0].suit;
+            Rank rank1 = player->playerDeck[0].rank;
 
-        case 3:
-            player->setPosition(705, 530);
-            break;
+            Suit suit2 = player->playerDeck[1].suit;
+            Rank rank2 = player->playerDeck[1].rank;
 
-        default:
-            break;
+            if (cardControlMap[suit1].find(rank1) == cardControlMap[suit1].end() &&
+                cardControlMap[suit2].find(rank2) == cardControlMap[suit2].end()) {
+
+                cardControlMap[suit1].insert(rank1);
+                cardControlMap[suit2].insert(rank2);
+                break;
+            }
         }
 
-        playersVector.push_back(std::move(player));
+        switch (i) {
+        case 0: player->setPosition(-5, 45); break;
+        case 1: player->setPosition(705, 45); break;
+        case 2: player->setPosition(-5, 530); break;
+        case 3: player->setPosition(705, 530); break;
+        default: break;
+        }
+
+        playersVector.emplace_back(std::move(player));
     }
-
-    
-
 }
 
 void GameScreen::handleEvents()

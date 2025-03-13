@@ -32,7 +32,7 @@ private:
     std::array<sf::Texture, 2> cartTexture;
     std::array<sf::Sprite, 2> cartSprite;
 
-private:
+public:
     std::array<Cart, 2> playerDeck;
 
 private:
