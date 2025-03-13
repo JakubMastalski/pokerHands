@@ -1,5 +1,4 @@
 #include "Screen/GameScreen.hpp"
-#include <iostream>
 
 GameScreen::GameScreen(Window* window) : BaseScreen(window)
 {
