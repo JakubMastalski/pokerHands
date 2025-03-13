@@ -1,21 +1,29 @@
 #include "Screen/GameScreen.hpp"
 #include <iostream>
 
-GameScreen::GameScreen(Window* window) : BaseScreen(window), m_player({ window })
+GameScreen::GameScreen(Window* window) : BaseScreen(window)
 {
     if (!backgroundTexture.loadFromFile("res/images/5.png"))
     {
         std::cerr << "Failed to load 5.png!" << std::endl;
     }
 
-    backgroundImage.setTexture(backgroundTexture);
+    for (int i = 0; i < m_chosenNumber; i++)
+    {
+        auto player = std::make_unique<Player>(window);
+        player->setPosition(i * 50, i * 125);
 
-    sf::Vector2u windowSize = window->getSize();
+        playersVector.push_back(std::move(player));
+    }
 
-    backgroundImage.setScale(
-        static_cast<float>(windowSize.x) / backgroundTexture.getSize().x,
-        static_cast<float>(windowSize.y) / backgroundTexture.getSize().y
-    );
+        backgroundImage.setTexture(backgroundTexture);
+
+        sf::Vector2u windowSize = window->getSize();
+
+        backgroundImage.setScale(
+            static_cast<float>(windowSize.x) / backgroundTexture.getSize().x,
+            static_cast<float>(windowSize.y) / backgroundTexture.getSize().y
+        );
 }
 
 void GameScreen::handleEvents()
@@ -34,7 +42,12 @@ void GameScreen::render()
     m_window->beginDraw();
     
     m_window->draw(backgroundImage);
-    m_player.draw(m_window.get());
+
+   
+    for (auto& player : playersVector)
+    {
+        player->draw(m_window.get());
+    }
 
     m_window->endDraw();
 }

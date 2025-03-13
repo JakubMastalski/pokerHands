@@ -17,7 +17,8 @@ public:
     void setChosenNumber(int chosenNumber);
 
 private:
-    Player m_player;
+    std::vector<std::unique_ptr<Player>> playersVector;
+
     sf::Sprite backgroundImage;
     sf::Texture backgroundTexture;
 

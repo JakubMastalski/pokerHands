@@ -47,9 +47,13 @@ void Player::setSprite()
 
         cartSprite[i].setTexture(cartTexture[i]);
         cartSprite[i].setTextureRect(cardRect);
-        cartSprite[i].setPosition(i * 90, 530);
-
     }
+}
+
+void Player::setPosition(int posX , int posY)
+{
+     cartSprite[0].setPosition(posX, posY);
+     cartSprite[1].setPosition(posX + 100, posY);
 }
 
 void Player::update()
