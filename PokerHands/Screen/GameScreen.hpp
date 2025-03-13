@@ -13,6 +13,8 @@ public:
     void update() override;
     void render() override;
 
+    void initPlayer();
+
 public:
     void setChosenNumber(int chosenNumber);
 

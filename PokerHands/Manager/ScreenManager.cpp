@@ -48,6 +48,7 @@ void ScreenManager::setScreen(const ScreenType screenType)
         if (menuScreen && gameScreen)
         {
             gameScreen->setChosenNumber(menuScreen->getChosenNumber() + 2);
+            gameScreen->initPlayer();
         }
     }
 

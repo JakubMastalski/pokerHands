@@ -8,14 +8,6 @@ GameScreen::GameScreen(Window* window) : BaseScreen(window)
         std::cerr << "Failed to load 5.png!" << std::endl;
     }
 
-    for (int i = 0; i < m_chosenNumber; i++)
-    {
-        auto player = std::make_unique<Player>(window);
-        player->setPosition(i * 50, i * 125);
-
-        playersVector.push_back(std::move(player));
-    }
-
         backgroundImage.setTexture(backgroundTexture);
 
         sf::Vector2u windowSize = window->getSize();
@@ -24,6 +16,40 @@ GameScreen::GameScreen(Window* window) : BaseScreen(window)
             static_cast<float>(windowSize.x) / backgroundTexture.getSize().x,
             static_cast<float>(windowSize.y) / backgroundTexture.getSize().y
         );
+}
+
+void GameScreen::initPlayer()
+{
+    for (int i = 0; i < m_chosenNumber; i++)
+    {
+        auto player = std::make_unique<Player>(m_window.get());
+
+        switch (i)
+        {
+        case 0:
+            player->setPosition(-5, 45);
+            break;
+        case 1:
+            player->setPosition(705, 45);
+            break;
+
+        case 2:
+            player->setPosition(-5, 530);
+            break;
+
+        case 3:
+            player->setPosition(705, 530);
+            break;
+
+        default:
+            break;
+        }
+
+        playersVector.push_back(std::move(player));
+    }
+
+    
+
 }
 
 void GameScreen::handleEvents()
