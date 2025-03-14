@@ -2,6 +2,8 @@
 
 #include "Entity/Player.hpp"
 
+#include <iostream>
+
 class Dealer
 {
 public:
@@ -10,12 +12,13 @@ public:
 public:
     void update();
     void draw(Window* window) const;
+    void setSprite();
 
 public:
-    std::array<sf::Texture, 2> cartTexture;
-    std::array<sf::Sprite, 2> cartSprite;
+    sf::Texture cartTexture;
+    sf::Sprite cartSprite;
 
 public:
-    std::array<Cart,5> dealerDeck;
+    Cart dealerCard;
 
 };
