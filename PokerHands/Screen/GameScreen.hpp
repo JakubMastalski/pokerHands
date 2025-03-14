@@ -2,6 +2,7 @@
 #include <Screen/MenuScreen.hpp>
 
 #include "Entity/Player.hpp"
+#include "Entity/Dealer.hpp"
 
 #include <iostream>
 #include <unordered_map>
@@ -20,15 +21,22 @@ public:
 
 public:
     void setChosenNumber(int chosenNumber);
+
     void initPlayer();
+    void initDealer();
 
 private:
     std::vector<std::unique_ptr<Player>> playersVector;
+    std::vector<std::unique_ptr<Dealer>> dealerVector;
+
     std::unordered_map<Suit, std::unordered_set<Rank>> cardControlMap;
 
 private:  
     sf::Sprite backgroundImage;
     sf::Texture backgroundTexture;
 
+private:
     int m_chosenNumber = 0;
+    int m_roundeCounter = 0;
+
 };

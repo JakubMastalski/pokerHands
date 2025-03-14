@@ -53,6 +53,12 @@ void GameScreen::initPlayer()
     }
 }
 
+
+void GameScreen::initDealer()
+{
+    std::cout << "Cart ";
+}
+
 void GameScreen::handleEvents()
 {
 	BaseScreen::handleEvents();
