@@ -23,10 +23,12 @@ public:
 public:
     void update();
     void draw(Window* window) const;
-    void setPosition(int posX, int posY);
 
 private:
     void setSprite();
+
+public:
+    void setPosition(int posX, int posY);
 
 private:
     std::array<sf::Texture, 2> cartTexture;

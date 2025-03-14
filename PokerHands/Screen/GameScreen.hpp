@@ -23,7 +23,7 @@ public:
     void setChosenNumber(int chosenNumber);
 
     void initPlayer();
-    void initDealer();
+    void addCard_Dealer();
 
 private:
     std::vector<std::unique_ptr<Player>> playersVector;
@@ -37,6 +37,6 @@ private:
 
 private:
     int m_chosenNumber = 0;
-    int m_roundeCounter = 0;
+    int m_roundeCounter = 1;
 
 };

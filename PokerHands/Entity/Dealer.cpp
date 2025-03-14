@@ -42,6 +42,11 @@ void Dealer::setSprite()
     cartSprite.setTextureRect(cardRect);
 }
 
+void Dealer::setPosition(int posX, int posY)
+{
+    cartSprite.setPosition(posX, posY);
+}
+
 void Dealer::update()
 {
 	//EMPTY BODY

@@ -54,16 +54,60 @@ void GameScreen::initPlayer()
 }
 
 
-void GameScreen::initDealer()
+void GameScreen::addCard_Dealer()
 {
-    std::cout << "Cart ";
+        std::unique_ptr<Dealer> dealer;
+
+        while (true) {
+
+            dealer = std::make_unique<Dealer>(m_window.get());
+
+            Suit suit = dealer->dealerCard.suit;
+            Rank rank = dealer->dealerCard.rank;
+
+            if (cardControlMap[suit].find(rank) == cardControlMap[suit].end()) {
+
+                cardControlMap[suit].insert(rank);
+                break;
+            }
+        }
+
+        dealer->setPosition(90 + 100 * m_roundeCounter, 270);
+
+        dealerVector.emplace_back(std::move(dealer));
+        m_roundeCounter++;
 }
 
 void GameScreen::handleEvents()
 {
-	BaseScreen::handleEvents();
-}
+    sf::Event m_event{};
 
+    while (m_window->getRenderer().pollEvent(m_event))
+    {
+        if (m_event.type == sf::Event::Closed)
+        {
+            m_window->close();
+        }
+        if (m_event.type == sf::Event::KeyPressed)
+        {
+            if (m_event.key.code == sf::Keyboard::Escape)
+            {
+                m_window->close();
+            }
+        }
+        if (m_event.type == sf::Event::KeyPressed)
+        {
+            if (m_event.key.code == sf::Keyboard::Enter)
+            {
+                if (m_roundeCounter <= 5) addCard_Dealer();
+                else
+                {
+                    //restart();
+                }
+            }
+        }
+    }
+}
 
 void GameScreen::update()
 {
@@ -77,9 +121,14 @@ void GameScreen::render()
     m_window->draw(backgroundImage);
 
    
-    for (auto& player : playersVector)
+    for (auto& playerCards : playersVector)
     {
-        player->draw(m_window.get());
+        playerCards->draw(m_window.get());
+    }
+
+    for (auto& dealerCards : dealerVector)
+    {
+        dealerCards->draw(m_window.get());
     }
 
     m_window->endDraw();

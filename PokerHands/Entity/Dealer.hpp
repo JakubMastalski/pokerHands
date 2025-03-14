@@ -12,7 +12,10 @@ public:
 public:
     void update();
     void draw(Window* window) const;
+
+public:
     void setSprite();
+    void setPosition(int posX, int posY);
 
 public:
     sf::Texture cartTexture;
