@@ -1,11 +1,12 @@
 #include <Screen/BaseScreen.hpp>
 #include <Screen/MenuScreen.hpp>
 
-#include "Player/Player.hpp"
+#include "Entity/Player.hpp"
 
 #include <iostream>
 #include <unordered_map>
 #include <unordered_set>
+
 
 class GameScreen final : public BaseScreen
 {
