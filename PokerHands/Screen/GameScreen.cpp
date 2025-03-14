@@ -20,6 +20,7 @@ GameScreen::GameScreen(Window* window) : BaseScreen(window)
 void GameScreen::initPlayer()
 {
     for (int i = 0; i < m_chosenNumber; i++) {
+
         std::unique_ptr<Player> player;
 
         while (true) {
@@ -60,7 +61,7 @@ void GameScreen::handleEvents()
 
 void GameScreen::update()
 {
-	
+	//EMPTY BODY
 }
 
 void GameScreen::render()
