@@ -102,12 +102,40 @@ void GameScreen::handleEvents()
                 if (m_roundeCounter <= 5) addCard_Dealer();
                 else
                 {
-                    //restart();
+                    changePlayerNumber = false;
+                    game_restart();
+                }
+            }
+            if (m_event.key.code == sf::Keyboard::Space)
+            {
+                if (m_roundeCounter <= 5) addCard_Dealer();
+                else
+                {
+                    changePlayerNumber = true;
+                    game_restart();
                 }
             }
         }
     }
 }
+
+void GameScreen::game_restart()
+{
+    m_roundeCounter = 1;
+
+    if (changePlayerNumber)
+    {
+        m_chosenNumber = 0;
+        ScreenManager::GetInstance().setScreen(ScreenType::MENU);
+    }
+
+    playersVector.clear();
+    dealerVector.clear();
+    cardControlMap.clear();
+
+    initPlayer();
+}
+
 
 void GameScreen::update()
 {

@@ -4,6 +4,8 @@
 #include "Entity/Player.hpp"
 #include "Entity/Dealer.hpp"
 
+#include "Manager/ScreenManager.hpp"
+
 #include <iostream>
 #include <unordered_map>
 #include <unordered_set>
@@ -21,9 +23,11 @@ public:
 
 public:
     void setChosenNumber(int chosenNumber);
-
     void initPlayer();
+
+private:
     void addCard_Dealer();
+    void game_restart();
 
 private:
     std::vector<std::unique_ptr<Player>> playersVector;
@@ -38,5 +42,7 @@ private:
 private:
     int m_chosenNumber = 0;
     int m_roundeCounter = 1;
+
+    bool changePlayerNumber = false;
 
 };
